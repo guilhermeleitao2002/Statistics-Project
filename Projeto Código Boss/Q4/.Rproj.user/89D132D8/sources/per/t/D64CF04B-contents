@@ -1,0 +1,15 @@
+library("openxlsx")
+library("tidyverse")
+
+#Set directory to current folder
+setwd(getwd())
+
+#Import data
+data <- read.xlsx("src/Pacientes.xlsx", sheet = 1, colNames = TRUE, rowNames = FALSE)
+
+#Plot
+ggplot(data, aes(Idade, TAD)) +
+  geom_point(size=1.3, color="firebrick2")+ #Scatter plot
+  geom_smooth(method=lm, se=FALSE)+         #Regression
+  labs(title = "TAD em funcao da idade de 70 pacientes", x = "Idade", y = "TAD") +
+  theme_bw()
